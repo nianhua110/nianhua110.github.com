@@ -1,141 +1,520 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- TemplateBeginEditable name="doctitle" -->
-<title>无标题文档</title>
-<!-- TemplateEndEditable -->
-<!-- TemplateBeginEditable name="head" -->
-<!-- TemplateEndEditable -->
-<style type="text/css">
-<!--
-body {
-	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
-	background-color: #42413C;
-	margin: 0;
-	padding: 0;
-	color: #000;
-}
-
-/* ~~ 元素/标签选择器 ~~ */
-ul, ol, dl { /* 由于浏览器之间的差异，最佳做法是在列表中将填充和边距都设置为零。为了保持一致，您可以在此处指定需要的数值，也可以在列表所包含的列表项（LI、DT 和 DD）中指定需要的数值。请注意，除非编写一个更为具体的选择器，否则您在此处进行的设置将会层叠到 .nav 列表。 */
-	padding: 0;
-	margin: 0;
-}
-h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;	 /* 删除上边距可以解决边距会超出其包含的 div 的问题。剩余的下边距可以使 div 与后面的任何元素保持一定距离。 */
-	padding-right: 15px;
-	padding-left: 15px; /* 向 div 内的元素侧边（而不是 div 自身）添加填充可避免使用任何方框模型数学。此外，也可将具有侧边填充的嵌套 div 用作替代方法。 */
-}
-a img { /* 此选择器将删除某些浏览器中显示在图像周围的默认蓝色边框（当该图像包含在链接中时） */
-	border: none;
-}
-
-/* ~~ 站点链接的样式必须保持此顺序，包括用于创建悬停效果的选择器组在内。 ~~ */
-a:link {
-	color: #42413C;
-	text-decoration: underline; /* 除非将链接设置成极为独特的外观样式，否则最好提供下划线，以便可从视觉上快速识别 */
-}
-a:visited {
-	color: #6E6C64;
-	text-decoration: underline;
-}
-a:hover, a:active, a:focus { /* 此组选择器将为键盘导航者提供与鼠标使用者相同的悬停体验。 */
-	text-decoration: none;
-}
-
-/* ~~ 此固定宽度容器包含所有其它 div ~~ */
-.container {
-	width: 960px;
-	background-color: #FFF;
-	margin: 0 auto; /* 侧边的自动值与宽度结合使用，可以将布局居中对齐 */
-	overflow: hidden; /* 此声明可使 .container 了解其内部浮动列的结束位置以及包含列的位置 */
-}
-
-/* ~~ 以下是此布局的列。 ~~ 
-
-1) 填充只会放置于 div 的顶部和/或底部。此 div 中的元素侧边会有填充。这样，您可以避免使用任何“方框模型数学”。请注意，如果向 div 自身添加任何侧边填充或边框，这些侧边填充或边框将与您定义的宽度相加，得出 *总计* 宽度。您也可以选择删除 div 中的元素的填充，并在该元素中另外放置一个没有任何宽度但具有设计所需填充的 div。
-
-2) 由于这些列均为浮动列，因此未对其指定边距。如果必须添加边距，请避免在浮动方向一侧放置边距（例如：div 中的右边距设置为向右浮动）。在很多情况下，都可以改用填充。对于必须打破此规则的 div，应向该 div 的规则中添加“display:inline”声明，以控制某些版本的 Internet Explorer 会使边距翻倍的错误。
-
-3) 由于可以在一个文档中多次使用类（并且一个元素可以应用多个类），因此已向这些列分配类名，而不是 ID。例如，必要时可堆叠两个侧栏 div。您可以根据个人偏好将这些名称轻松地改为 ID，前提是仅对每个文档使用一次。
-
-4) 如果您更喜欢在右侧（而不是左侧）进行导航，只需使这些列向相反方向浮动（全部向右，而非全部向左），它们将按相反顺序显示。您无需在 HTML 源文件中移动 div。
-
-*/
-.sidebar1 {
-	float: left;
-	width: 180px;
-	background-color: #EADCAE;
-	padding-bottom: 10px;
-}
-.content {
-
-	padding: 10px 0;
-	width: 780px;
-	float: left;
-}
-
-/* ~~ 此分组的选择器为 .content 区域中的列表提供了空间 ~~ */
-.content ul, .content ol { 
-	padding: 0 15px 15px 40px; /* 此填充反映上述标题和段落规则中的右填充。填充放置于下方可用于间隔列表中其它元素，置于左侧可用于创建缩进。您可以根据需要进行调整。 */
-}
-
-/* ~~ 导航列表样式（如果选择使用预先创建的 Spry 等弹出菜单，则可以删除此样式） ~~ */
-ul.nav {
-	list-style: none; /* 这将删除列表标记 */
-	border-top: 1px solid #666; /* 这将为链接创建上边框 – 使用下边框将所有其它项放置在 LI 中 */
-	margin-bottom: 15px; /* 这将在下面内容的导航之间创建间距 */
-}
-ul.nav li {
-	border-bottom: 1px solid #666; /* 这将创建按钮间隔 */
-}
-ul.nav a, ul.nav a:visited { /* 对这些选择器进行分组可确保链接即使在访问之后也能保持其按钮外观 */
-	padding: 5px 5px 5px 15px;
-	display: block; /* 这将为链接赋予块属性，使其填满包含它的整个 LI。这样，整个区域都可以响应鼠标单击操作。 */
-	width: 160px;  /*此宽度使整个按钮在 IE6 中可单击。如果您不需要支持 IE6，可以删除它。请用侧栏容器的宽度减去此链接的填充来计算正确的宽度。 */
-	text-decoration: none;
-	background-color: #C6D580;
-}
-ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 这将更改鼠标和键盘导航的背景和文本颜色 */
-	background-color: #ADB96E;
-	color: #FFF;
-}
-
-/* ~~ 其它浮动/清除类 ~~ */
-.fltrt {  /* 此类可用于在页面中使元素向右浮动。浮动元素必须位于其在页面上的相邻元素之前。 */
-	float: right;
-	margin-left: 8px;
-}
-.fltlft { /* 此类可用于在页面中使元素向左浮动。浮动元素必须位于其在页面上的相邻元素之前。 */
-	float: left;
-	margin-right: 8px;
-}
-.clearfloat { /* 如果从 .container 中删除了 overflow:hidden，则可以将此类放置在 <br /> 或空 div 中，作为 #container 内最后一个浮动 div 之后的最终元素 */
-	clear:both;
-	height:0;
-	font-size: 1px;
-	line-height: 0px;
-}
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-</style></head>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Acrostia A Blogging Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Acrostia Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+<!--//fonts-->
 
-<body>
+<script src="js/responsiveslides.min.js"></script>
+	<script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+  <!---->
+  <script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$(".scroll").click(function(event){		
+							event.preventDefault();
+							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+						});
+					});
+					</script>
 
-<div class="container">
-  <div class="sidebar1">
-    <ul class="nav">
-      <li><a href="#">链接一</a></li>
-      <li><a href="#">链接二</a></li>
-      <li><a href="#">链接三</a></li>
-      <li><a href="#">链接四</a></li>
-    </ul>
-    <p> 以上链接说明了一种基本导航结构，该结构使用以 CSS 设置样式的无序列表。请以此作为起点修改属性，以生成您自己的独特外观。如果需要弹出菜单，请使用 Spry 菜单、Adobe Exchange 中的菜单构件 或其它各种 javascript 或 CSS 解决方案创建您自己的菜单。</p>
-    <p>如果您想要在顶部进行导航，只需将 ul.nav 移到页面顶部并重新创建样式即可。</p>
-    <!-- end .sidebar1 --></div>
-  <div class="content">
-    
-    <!-- end .content --><img src="images/hk1.jpg" width="1341" height="784" alt="0" /></div>
-  <!-- end .container --></div>
+
+</head>
+<body> 
+<!--header-->
+<!--banner-->
+<div class="banner" id="home">
+	<div class="slider" >
+	    <div class="callbacks_container">
+	      <ul class="rslides" id="slider">
+	        <li>
+	          <img src="images/banner4.jpg" alt="">
+			  <div class="banner-matter">
+			  <img class="img-responsive"  src="images/good.png" alt=" " />
+			 
+			  </div>
+	        </li>
+	        <li>
+	          <img src="images/banner3.jpg" alt=""> 
+			<div class="banner-matter">
+				<img  class="img-responsive" src="images/good.png" alt=" " />
+			  
+			  </div>			  
+	        </li>
+	        <li>
+	          <img src="images/banner5.jpg" alt="">
+				<div class="banner-matter">
+				<img class="img-responsive" src="images/good.png" alt=" " />
+			  
+			  </div>
+	        </li>
+	      </ul>
+	  </div>
+	  </div>
+	  </div>
+	<!---->
+	<div class="header" >
+			<div class="container">
+			<div class="fixed-header">
+
+			<div class="logo">
+					<a href="index.html"><img src="images/logo2.png" alt=" " /></a>
+			</div>
+			
+				<div class="top-nav cssmenu">
+				<nav class="nav clearfix">
+					<a id="menu-toggle" class="anchor-link"><img src="images/menu.png" alt="" /></a>
+					<ul class="simple-toggle" id="nav">
+			        	<li class="current"><a href="#home" class="scroll">主页</a></li>		        	
+			        	<li ><a href="#services" class="scroll"> 关于</a></li>
+						<li ><a href="#about" class="scroll">成员</a></li>
+			        	<li><a href="#work" class="scroll">工作</a></li>
+			        	<li><a href="#contact" class="scroll">联系我们</a></li>
+			        </ul>
+				</nav>
+				
+				<script type="text/javascript">
+					  $(document).ready(function() {
+					
+						$('#menu-toggle').click(function () {
+					      $('#nav').toggleClass('open');
+					      e.preventDefault();
+					    });
+					    
+					});
+				</script>
+				<!---->
+				<script src="js/jquery.nav.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#nav').onePageNav({
+			begin: function() {
+			console.log('start')
+			},
+			end: function() {
+			console.log('stop')
+			}
+		});
+	});
+	</script>
+				
+				</div>
+				<div class="clearfix"> </div>
+				</div>
+		</div>
+	</div>
+	
+		<script>
+		$(document).ready(function() {
+			 var navoffeset=$(".header").offset().top;
+			 $(window).scroll(function(){
+				var scrollpos=$(window).scrollTop(); 
+				if(scrollpos >=navoffeset){
+					$(".header").addClass("fixed");
+				}else{
+					$(".header").removeClass("fixed");
+				}
+			 });
+			 
+		});
+		</script>
+		<!-- /script-for sticky-nav -->
+
+<!--content-->
+	<div class="content">
+	<!---->
+		<div class="services" id="services">
+			<div class="container">
+				<div class="service-head">
+					<h3>OUR SERVICES</h3>
+					<span> Cras commodo mattis justo nec <b>lobortis</b>. Nam ut tellus lobortis, ullamcorper massa sit amet</span>
+					<p>Cras suscipit porttitor porttitor. Morbi sit amet tincidunt sapien. Curabitur posuere lectus aliquet erat rutrum sollicitudin. In enim diam, ullamcorper quis libero et, ultricies commodo est. Quisque at ante vitae justo fermentum viverra ac eu justo. Ut luctus imperdiet lacus, eget laoreet erat posuere quis.</p>
+				</div>
+				<div class=" services-grid">
+					<div class="col-md-4 service-grid">
+						<a href="#"><img class="img-responsive" src="images/s1.png" alt=" " /></a>
+						<h5>Researching</h5>
+						<p>Praesent interdum blandit quam. Asunt in anim uis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+					</div>
+					<div class="col-md-4 service-grid">
+						<a href="#"><img class="img-responsive" src="images/s2.png" alt=" " /></a>
+						<h5>Designing</h5>
+						<p>Praesent interdum blandit quam. Asunt in anim uis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+					</div>
+					<div class="col-md-4 service-grid">
+						<a href="#"><img class="img-responsive" src="images/s3.png" alt=" " /></a>
+						<h5>Development</h5>
+						<p>Praesent interdum blandit quam. Asunt in anim uis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+					</div>
+					<div class="col-md-4 service-grid ">
+						<a href="#"><img class="img-responsive" src="images/s4.png" alt=" " /></a>
+						<h5>Launch</h5>
+						<p>Praesent interdum blandit quam. Asunt in anim uis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+					</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		</div>
+		<!---->
+		<div class="team" id="about">
+			<div class="container">
+				<div class="team-head">
+					<h3>Who we are & what we do</h3>
+					<p>Cras suscipit porttitor porttitor. Morbi sit amet tincidunt sapien. Curabitur posuere lectus aliquet erat rutrum sollicitudin. In enim diam, ullamcorper quis libero et, ultricies commodo est. Quisque at ante vitae justo fermentum viverra ac eu justo. Ut luctus imperdiet lacus, eget laoreet erat posuere quis.</p>
+					<a href="#" class="meet">Meet the team<span> </span></a>
+				</div>
+				<div class=" team-top">
+				<div class="col-md-4 team-top-grid">
+					<div class="team-grid">
+						<a href="#"><label> </label></a>
+						<h6>Anton Petrov</h6>
+						<small>General manager</small>
+						<ul class="social">
+								<li class="facebook"><a href="#"><span> </span> </a></li>
+								<li class="twitter"><a href="#"><span> </span> </a></li>
+								<li class="gmail"><a href="#"><span> </span> </a></li>
+								<li class="inline"><a href="#"><span> </span> </a></li>
+							</ul>
+					</div>
+					</div>
+					<div class=" col-md-4 team-top-grid">
+					<div class="team-grid">
+						<a href="#"><label> </label></a>
+						<h6>Anton Petrov</h6>
+						<small>General manager</small>
+						<ul class="social">
+								<li class="facebook"><a href="#"><span> </span> </a></li>
+								<li class="twitter"><a href="#"><span> </span> </a></li>
+								<li class="gmail"><a href="#"><span> </span> </a></li>
+								<li class="inline"><a href="#"><span> </span> </a></li>
+							</ul>
+					</div>
+					</div>
+					<div class="col-md-4 team-top-grid">
+					<div class="team-grid">
+						<a href="#"><label> </label></a>
+						<h6>Anton Petrov</h6>
+						<small>General manager</small>
+						<ul class="social">
+								<li class="facebook"><a href="#"><span> </span> </a></li>
+								<li class="twitter"><a href="#"><span> </span> </a></li>
+								<li class="gmail"><a href="#"><span> </span> </a></li>
+								<li class="inline"><a href="#"><span> </span> </a></li>
+							</ul>
+					</div>
+					</div>
+					<div class="col-md-4 team-top-grid  ">
+					<div class="team-grid">
+						<a href="#"><label> </label></a>
+						<h6>Anton Petrov</h6>
+						<small>General manager</small>
+						<ul class="social">
+								<li class="facebook"><a href="#"><span> </span> </a></li>
+								<li class="twitter"><a href="#"><span> </span> </a></li>
+								<li class="gmail"><a href="#"><span> </span> </a></li>
+								<li class="inline"><a href="#"><span> </span> </a></li>
+							</ul>
+					</div>
+						
+						</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+		<!---->
+		<div class="work" id="work">
+			<div class="container">
+				<div class="work-head">
+					<h3>our work</h3>
+					<p>Cras suscipit porttitor porttitor. Morbi sit amet tincidunt sapien. Curabitur posuere lectus aliquet erat rutrum sollicitudin. In enim diam, ullamcorper quis libero et, ultricies commodo est. Quisque at ante vitae justo fermentum viverra ac eu justo. Ut luctus imperdiet lacus, eget laoreet erat posuere quis.</p>					
+				</div>
+				<div class=" work-top">					
+				<div class="by-type">
+					<h6>PORTFOLIO</h6>
+				</div>
+					<ul id="filters">
+						<li><span class="filter " data-filter="app card icon web">All</span></li>
+						<li><span class="filter" data-filter="app">Photography</span></li>
+						<li><span class="filter" data-filter="card"> Logo design </span></li>
+						<li><span class="filter" data-filter="icon">Web design</span></li>
+					</ul>
+					<div class="clearfix"> </div>
+				</div>
+					<div id="portfoliolist">
+					<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper ">		
+							<a href="images/p1.jpg" class="b-link-stripe b-animate-go  thickbox swipebox">
+						    <img class="img-responsive" src="images/p1.jpg" alt=""  /> 
+							<span class="arrow"> </span>
+						     <div class="simple">						    	
+								<label> </label>
+						    </div>		
+						</a>	
+							<p>Aenean a elit</p>													
+						</div>
+					</div>				
+					<div class="portfolio icon mix_all" data-cat="icon" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper">		
+							<a href="images/p2.jpg" class="b-link-stripe b-animate-go  thickbox swipebox">
+						    <img class="img-responsive" src="images/p2.jpg" alt=""  />
+						    <span class="arrow"> </span>
+						     <div class="simple">						    	
+								<label> </label>
+						    </div>		
+						</a>	
+							<p>Aenean a elit</p>
+		                </div>
+					</div>		
+					<div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper">		
+							<a href="images/p3.jpg" class="b-link-stripe b-animate-go  thickbox swipebox">
+						     <img class="img-responsive" src="images/p3.jpg"  alt="" />
+						     <span class="arrow"> </span>
+						     <div class="simple">						    	
+								<label> </label>
+						    </div>		
+						</a>	
+							<p>Aenean a elit</p>
+		                </div>
+					</div>				
+					<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper ">		
+							<a href="images/p4.jpg" class="b-link-stripe b-animate-go  thickbox swipebox">
+						     <img class="img-responsive" src="images/p4.jpg" alt=""  />
+						     <span class="arrow"> </span>
+						     <div class="simple">						    	
+								<label> </label>
+						    </div>		
+						</a>	
+							<p>Aenean a elit</p>	
+		                </div>
+					</div>	
+					<div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper ">		
+							<a href="images/p5.jpg" class="b-link-stripe b-animate-go  thickbox swipebox">
+						     <img class="img-responsive" src="images/p5.jpg" alt=""  />
+						    <span class="arrow"> </span>
+						     <div class="simple">						    	
+								<label> </label>
+						    </div>		
+						</a>	
+							<p>Aenean a elit</p>	
+		                </div>
+					</div>			
+					<div class="portfolio icon mix_all" data-cat="icon" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper">		
+							<a href="images/p6.jpg" class="b-link-stripe b-animate-go  thickbox swipebox">
+						     <img class="img-responsive" src="images/p6.jpg" alt=""  />
+						     
+						    <span class="arrow"> </span>
+						     <div class="simple">						    	
+								<label> </label>
+						    </div>		
+						</a>	
+							<p>Aenean a elit</p>
+		                </div>
+					</div>
+					<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper">		
+							<a href="images/p7.jpg" class="b-link-stripe b-animate-go  thickbox swipebox">
+						     <img class="img-responsive" src="images/p7.jpg" alt=""  />
+						     <span class="arrow"> </span>
+						     <div class="simple">						    	
+								<label> </label>
+						    </div>		
+						</a>	
+							<p>Aenean a elit</p>
+		                </div>
+					</div>
+					<div class="portfolio icon mix_all" data-cat="icon" style="display: inline-block; opacity: 1;">
+						<div class="portfolio-wrapper">		
+							<a href="images/p1.jpg" class="b-link-stripe b-animate-go  thickbox swipebox">
+						     <img class="img-responsive" src="images/p1.jpg" alt=""  />
+						     <span class="arrow"> </span>
+						     <div class="simple">						    	
+								<label> </label>
+						    </div>		
+						</a>	
+							<p>Aenean a elit</p>
+		                </div>
+					</div>
+					<div class="clearfix"> </div>
+					</div>	
+			<!-- Script for gallery Here -->
+				<script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+					<script type="text/javascript">
+					$(function () {
+						
+						var filterList = {
+						
+							init: function () {
+							
+								// MixItUp plugin
+								// http://mixitup.io
+								$('#portfoliolist').mixitup({
+									targetSelector: '.portfolio',
+									filterSelector: '.filter',
+									effects: ['fade'],
+									easing: 'snap',
+									// call the hover effect
+									onMixEnd: filterList.hoverEffect()
+								});				
+							
+							},
+							
+							hoverEffect: function () {
+							
+								// Simple parallax effect
+								$('#portfoliolist .portfolio').hover(
+									function () {
+										$(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
+										$(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');				
+									},
+									function () {
+										$(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
+										$(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');								
+									}		
+								);				
+							
+							}
+				
+						};
+						
+						// Run the show!
+						filterList.init();
+					});	
+					</script>
+			<!-- Gallery Script Ends -->
+			</div>
+		</div>
+		<!---->
+	<link rel="stylesheet" href="css/swipebox.css">
+	<script src="js/jquery.swipebox.min.js"></script> 
+	    <script type="text/javascript">
+			jQuery(function($) {
+				$(".swipebox").swipebox();
+			});
+		</script>
+
+	<!---->
+
+		<!---->
+		<div class="contact" id="contact">
+			<div class="container">
+				<div class="contact-head">
+					<h3>CONTACT US</h3>
+					<p>Cras suscipit porttitor porttitor. Morbi sit amet tincidunt sapien. Curabitur posuere lectus aliquet erat rutrum sollicitudin. In enim diam, ullamcorper quis libero et, ultricies commodo est. Quisque at ante vitae justo fermentum viverra ac eu justo. Ut luctus imperdiet lacus, eget laoreet erat posuere quis.</p>					
+				</div>
+				<div class="contact-bottom">
+					<div class="col-md-3 sit-contact">
+						<h5>Address</h5>
+						<div class="contact-add">
+							<ul>
+								<li><span>Acrostia</span></li>
+								<li>Sevenoaks Rd</li>
+								<li>Sevenoaks TN14 7HR, UK</li>	
+							</ul>
+						</div>
+						<div class="contact-in">
+						<ul class="phone">
+							<li>Phone:  <span>+44 555 555 555</span></li>
+							<li>Fax:  <span>+44 556  555 555</span></li>
+							<li>E-mail:  <a href="mailto:info@example.com">info@acrostia.com </a></li>
+							<li>Skype:  <span>Acrostia</span></li>	
+						</ul>							
+						</div>
+						
+					</div>
+					<div class="col-md-3">
+						<div class="map">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29266055.398148097!2d133.28132295!3d-26.43907425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b2bfd076787c5df%3A0x538267a1955b1352!2sAustralia!5e0!3m2!1sen!2sin!4v1414839600665"></iframe>
+						</div>						
+					</div>
+					<div class="col-md-6 contact-into">
+						<h5>Ask a question</h5>
+						<form>
+					<div class="contact-grid">
+						<div class="col-md-6 contact-us">
+							<input type="text" value="Name" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Name';}">
+						</div>
+						<div class="col-md-6 contact-us">
+							<input type="text" value="Email-id" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Email-id';}">
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<textarea cols="77" rows="6" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+					<div class="send ">
+						<input type="submit" value="SEND" >
+					</div>
+				</form>
+
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+
+			</div>
+		</div>
+	</div>	
+	<!--footer-->
+	<div class="footer">
+		<div class="container">
+				<ul class="social-icons">
+					<li><a href="#"><span> </span> </a></li>
+					<li class="twitter"><a href="#"><span> </span></a></li>
+					<li class="gmail"><a href="#"><span> </span> </a></li>
+					<li class="print"><a href="#"><span> </span> </a></li>
+				</ul>
+				<p class="footer-class">Copyright &copy; 2015 Acrostia Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+		</div>	
+		  <script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear' 
+					 		};
+							*/
+							
+							$().UItoTop({ easingType: 'easeOutQuart' });
+							
+						});
+					</script>
+
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+		</div>
+
 </body>
 </html>
