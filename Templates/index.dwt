@@ -134,7 +134,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 这将更改鼠标和键盘
     <p>如果您想要在顶部进行导航，只需将 ul.nav 移到页面顶部并重新创建样式即可。</p>
     <!-- end .sidebar1 --></div>
   <div class="content">
-    <h1><img src="../images/hk1.jpg" width="1341" height="784" /></h1>
+    <h1>&nbsp;</h1>
     <!-- end .content --></div>
   <!-- end .container --></div>
 </body>
