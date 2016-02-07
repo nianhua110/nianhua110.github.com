@@ -115,16 +115,16 @@ function timeElapse(date){
 }
 
 function showMessages() {
-	adjustWordsPosition();
-	$('#messages').fadeIn(5000, function() {
+    adjustWordsPosition();
+	$('#messages').fadeIn(1000, function() {
 		showLoveU();
 	});
 }
 
 function adjustWordsPosition() {
 	$('#words').css("position", "absolute");
-	$('#words').css("top", $("#garden").position().top + 195);
-	$('#words').css("left", $("#garden").position().left + 70);
+	$('#words').css("top", $("#garden").position().top + 300);
+	$('#words').css("left", $("#garden").position().left +100);
 }
 
 function adjustCodePosition() {
@@ -132,5 +132,5 @@ function adjustCodePosition() {
 }
 
 function showLoveU() {
-	$('#loveu').fadeIn(3000);
+	$('#loveu').fadeIn(1000);
 }
