@@ -37,8 +37,8 @@ $(window).resize(function() {
 
 function getHeartPoint(angle) {
 	var t = angle / Math.PI;
-	var x = 10 * (13 * Math.pow(Math.sin(t), 3));
-	var y = - 13 * (10 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+	var x = 8 * (13 * Math.pow(Math.sin(t), 3));
+	var y = - 7 * (10 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
 	return new Array(offsetX + x, offsetY + y);
 }
 
