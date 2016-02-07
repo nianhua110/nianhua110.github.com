@@ -123,8 +123,8 @@ function showMessages() {
 
 function adjustWordsPosition() {
 	$('#words').css("position", "absolute");
-	$('#words').css("top", $("#garden").position().top + 300);
-	$('#words').css("left", $("#garden").position().left +100);
+	$('#words').css("top", $("#garden").position().top + 0);
+	$('#words').css("left", $("#garden").position().left +0);
 }
 
 function adjustCodePosition() {
